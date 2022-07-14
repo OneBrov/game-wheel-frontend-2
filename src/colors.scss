@@ -1,0 +1,8 @@
+$pr-h: 154;
+$pr-s: 61%;
+$pr-l: 44%;
+
+$primary: hsl($pr-h, $pr-s, $pr-l);
+
+$primary_light: hsl($pr-h, $pr-s, calc($pr-l + 15%) );
+$primary_dark:  hsl($pr-h, $pr-s, calc($pr-l - 15%) );

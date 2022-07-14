@@ -1,0 +1,26 @@
+@import '../../../colors.scss';
+
+.button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    padding: 0px;
+
+    &:hover {
+        background: hsla(20, 2%, 75%, 0.2);
+    }
+
+}
+
+.button_default { 
+    background-color: transparent;
+}
+
+.button_filled {
+    background-color: $primary_light;
+
+    &:hover {
+        background: $primary;
+    }
+}

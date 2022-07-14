@@ -1,0 +1,10 @@
+@import '../../../colors.scss';
+
+.link {
+    color: $primary;
+
+    &:hover {
+        text-decoration: underline ;
+        color: $primary_light;
+    }
+}
