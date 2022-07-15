@@ -1,0 +1,16 @@
+@import '../../../../colors.scss';
+
+.footer {
+    display: flex;
+    justify-content: center;
+
+    gap: 50px;
+}
+
+.source {
+    color: $primary;
+}
+
+.author {
+    color: $primary;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const index = () => {
+export const Tooltip = () => {
   return (
-    <div>index</div>
+    <div>Tooltip</div>
   )
 }

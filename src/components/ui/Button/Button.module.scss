@@ -6,11 +6,12 @@
     cursor: pointer;
     background: transparent;
     padding: 0px;
-
+    
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    
     &:hover {
         background: hsla(20, 2%, 75%, 0.2);
     }
-
 }
 
 .button_default { 
