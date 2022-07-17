@@ -12,8 +12,11 @@ export const Button:React.FC<ButtonProps> = React.memo(({
     type = 'default',
     children,
     className, 
-    onClick
+    onClick = () => {'blank'}
 }) => {
+
+  
+
   return (
     <button 
         className={`${styles.button} ${className}  ${type === 'default' ? styles.button_default : styles.button_filled}`}

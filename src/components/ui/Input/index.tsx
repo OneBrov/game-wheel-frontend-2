@@ -10,7 +10,7 @@ interface InputProps {
   className?: string;
 }
 
-export const Input:React.FC<InputProps> = ({
+export const Input:React.FC<InputProps> = React.memo(({
   label,
   onChange,
   value,
@@ -20,13 +20,14 @@ export const Input:React.FC<InputProps> = ({
 
   const [isFocused, setIsFocused] = React.useState(false);
 
-  function onInputFocus(e: React.FocusEvent) {
+  const onInputFocus = React.useCallback(function (e: React.FocusEvent) {
     setIsFocused(true)
-  }
+  }, [])
 
-  function onInputBlur(e: React.FocusEvent) {
+  const onInputBlur = React.useCallback(function (e: React.FocusEvent) {
     setIsFocused(value?.length > 0 ? true : false);
-  }
+  }, [value?.length])
+
 
   return (
     <label className={`${styles.container} ${className ? className : ''}`}>
@@ -50,4 +51,4 @@ export const Input:React.FC<InputProps> = ({
       </span>
     </label>
   )
-}
+})
