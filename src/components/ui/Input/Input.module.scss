@@ -3,9 +3,9 @@
 .container {
     display: flex;
     position: relative;
-    max-width: 300px;
+    width: 100%;
     margin-top: 20px;
-    background: inherit;
+    background: rgb(18, 18, 18);
 
     color: white;
 }
@@ -40,16 +40,41 @@
     color: $primary_dark;
 }
 
-.input {
+.input__container {
+    text-overflow: ellipsis;
+    width: 100%;
     flex: 1 1 1px;
+    display: inline;
     background: transparent;
     border-radius: 2px;
     border: none;
     outline: none;
     color: inherit;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-
     padding: 9px;
+    cursor: text;
+
+    &:hover {
+        border: 1px solid rgba(255, 255, 255, 1);
+    }
+}
+
+.input__container_default {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.input__container_focused {
+    border: 1px solid $primary_dark;
+}
+
+.input {
+    width: 100%;
+    flex: 1 1 1px;
+    display: inline;
+    background: transparent;
+
+    border: none;
+    outline: none;
+    color: inherit;
 
     &::placeholder {
         color: transparent;
@@ -58,13 +83,8 @@
         transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
     }
 
-    &:hover {
-        border: 1px solid rgba(255, 255, 255, 1);
-    }
-
     &:focus {
-        border: 1px solid $primary_dark;
-      
+
         &::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }

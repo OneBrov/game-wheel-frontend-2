@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 
 import styles from './Input.module.scss'
 
@@ -8,6 +8,8 @@ interface InputProps {
   value: string;
   placeholder?: string;
   className?: string;
+  inInputComponents?: ReactElement[];
+  [key: string]: any;
 }
 
 export const Input:React.FC<InputProps> = React.memo(({
@@ -15,7 +17,9 @@ export const Input:React.FC<InputProps> = React.memo(({
   onChange,
   value,
   placeholder,
-  className
+  className,
+  inInputComponents,
+  ...rest
 }) => {
 
   const [isFocused, setIsFocused] = React.useState(false);
@@ -31,21 +35,26 @@ export const Input:React.FC<InputProps> = React.memo(({
 
   return (
     <label className={`${styles.container} ${className ? className : ''}`}>
-      <input 
-        type={'text'}
-        className={`${styles.input}`} 
-        onChange={onChange} 
-        onFocus={onInputFocus}
-        onBlur={onInputBlur}
-        value={value} 
-        placeholder={placeholder}
-      />
-      
+      <div className={`${styles.input__container} ${isFocused ? styles.input__container_focused : styles.input__container_default}`}>
+        {inInputComponents?.length ?
+          inInputComponents.map(component => 
+            component  
+          ) :
+          ''
+        }
+        <input 
+          type={'text'}
+          className={`${styles.input}`} 
+          onChange={onChange} 
+          onFocus={onInputFocus}
+          onBlur={onInputBlur}
+          value={value} 
+          placeholder={placeholder}
+          {...rest}
+        />
+      </div>
       <span 
-        className={`
-          ${styles.label} 
-          ${isFocused ? styles.label_focused : styles.label_default}
-        `}
+        className={`${styles.label} ${isFocused || inInputComponents?.length  ? styles.label_focused : styles.label_default}`}
       >
         {label}
       </span>
