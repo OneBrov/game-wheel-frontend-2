@@ -9,6 +9,7 @@ interface InputProps {
   placeholder?: string;
   className?: string;
   inInputComponents?: ReactElement[];
+  isInFocus?: boolean;
   [key: string]: any;
 }
 
@@ -18,7 +19,8 @@ export const Input:React.FC<InputProps> = React.memo(({
   value,
   placeholder,
   className,
-  inInputComponents,
+  inInputComponents = [],
+  isInFocus = false,
   ...rest
 }) => {
 
@@ -29,25 +31,33 @@ export const Input:React.FC<InputProps> = React.memo(({
   }, [])
 
   const onInputBlur = React.useCallback(function (e: React.FocusEvent) {
-    setIsFocused(value?.length > 0 ? true : false);
-  }, [value?.length])
+    if (!isInFocus) {
+      setIsFocused(value?.length > 0 ? true : false);
+    } 
+  }, [isInFocus, value?.length])
 
+  const preventDefaultEnter = (e: React.KeyboardEvent) => {
+    if (e.code === 'Enter') {
+      e.preventDefault();
+    }
+  }
 
   return (
-    <label className={`${styles.container} ${className ? className : ''}`}>
+    <label htmlFor={label} className={`${styles.container} ${className ? className : ''}`}>
       <div className={`${styles.input__container} ${isFocused ? styles.input__container_focused : styles.input__container_default}`}>
-        {inInputComponents?.length ?
-          inInputComponents.map(component => 
-            component  
-          ) :
-          ''
-        }
+        <span className={styles.inInput__components}>
+          {inInputComponents.length > 0 && 
+            inInputComponents
+          }
+        </span>
         <input 
+          id={label}
           type={'text'}
           className={`${styles.input}`} 
           onChange={onChange} 
           onFocus={onInputFocus}
           onBlur={onInputBlur}
+          onKeyDown={preventDefaultEnter}
           value={value} 
           placeholder={placeholder}
           {...rest}

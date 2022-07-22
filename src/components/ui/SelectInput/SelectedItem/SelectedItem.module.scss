@@ -1,3 +1,25 @@
 .item {
-    margin-right: 7px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    width: fit-content;
+    display: flex;
+    padding: 2px;
+}
+
+.button_delete {
+    border-radius: 8px;
+    margin-left: 7px;
+    height: 16px;
+    align-self: center;
+    &:hover {
+        background-color:  rgba(255, 255, 255, 0.2);
+    }
+}
+
+.button__icon {
+    fill: rgba(255, 255, 255, 0.5);
+    margin-top: auto;
+    display: block;
+
 }

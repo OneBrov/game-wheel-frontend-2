@@ -1,7 +1,8 @@
 import React from 'react'
 import { CheckBox } from '../../ui/CheckBox';
 import { Input } from '../../ui/Input'
-import { SelectInput } from '../../ui/SelectInput';
+import { Select, SelectInput } from '../../ui/SelectInput';
+import { Tooltip } from '../../ui/Tooltip';
 import { TwoEndSlider } from '../../ui/TwoEndSlider';
 
 import styles from './Settings.module.scss'
@@ -22,7 +23,7 @@ export const Settings = () => {
   const [isFree, setIsFree] = React.useState<boolean>(false);
 
   const [priceRange, setPriceRange] = React.useState<[number, number]>([0, 100]);
-  const [genres, setGenres] = React.useState<number[]>([]);
+  const [genres, setGenres] = React.useState<Select[]>([]);
 
   React.useEffect(()=>{console.log(priceRange)},[priceRange]);
   React.useEffect(()=>{console.log(genres)},[genres])
@@ -43,6 +44,10 @@ export const Settings = () => {
         <TwoEndSlider label='Metascore' range={priceRange} min={0} max={100} setRange={setPriceRange} minDistance={10}/>
 
         <SelectInput selected={genres} setSelected={setGenres} label='Жанры' variants={mockGenres}/>
+
+        <Tooltip tip='tip HEre'>
+          <div>aboba</div>
+        </Tooltip>
     </form>
   )
 }
